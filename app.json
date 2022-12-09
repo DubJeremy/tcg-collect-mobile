@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "tcg-collect",
+    "slug": "tcg-collect",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "tcg-collect"
+}
