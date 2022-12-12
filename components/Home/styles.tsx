@@ -2,7 +2,9 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
     home: {
-        flex: 1,
+        width: "100%",
+        alignItems: "center",
+        justifyContent: "flex-start",
     },
     title: {
         fontWeight: "400",
@@ -12,7 +14,24 @@ const styles = StyleSheet.create({
         textShadowOffset: { width: -2, height: 2 },
         textShadowRadius: 5,
     },
-    series: {},
+    series: {
+        borderColor: "rgba(0, 0, 0, 0.3)",
+        borderTopWidth:4,
+        borderBottomWidth:4,
+        marginTop: 25,
+        width: "80%",
+        height: "80%",
+        justifyContent: "flex-end",
+        alignItems: "center",
+    
+    },
+    card: {
+        justifyContent: "center",
+        alignItems: "center",
+        width: "50%",
+        height: 120,
+        marginTop: "5%",
+    },
 });
 
 export default styles;

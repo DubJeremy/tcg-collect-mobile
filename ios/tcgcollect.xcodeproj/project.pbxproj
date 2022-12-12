@@ -14,6 +14,9 @@
 		96905EF65AED1B983A6B3ABC /* libPods-tcgcollect.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58EEBF8E8E6FB1BC6CAF49B5 /* libPods-tcgcollect.a */; };
 		B18059E884C0ABDD17F3DC3D /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
+		98B912B55C5C4B7D980FB7A5 /* Pokemon-Hollow.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 695C09BDE9E1460B9E489456 /* Pokemon-Hollow.ttf */; };
+		612FE98EC50A48F8B18185C5 /* Pokemon-Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2DBAD592318B490BA5028A35 /* Pokemon-Solid.ttf */; };
+		86998A0987A141F9BB0C333B /* Anton.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6C84735A88E44FE2BEA2E997 /* Anton.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +34,9 @@
 		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-tcgcollect/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
+		695C09BDE9E1460B9E489456 /* Pokemon-Hollow.ttf */ = {isa = PBXFileReference; name = "Pokemon-Hollow.ttf"; path = "../assets/fonts/Pokemon-Hollow.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		2DBAD592318B490BA5028A35 /* Pokemon-Solid.ttf */ = {isa = PBXFileReference; name = "Pokemon-Solid.ttf"; path = "../assets/fonts/Pokemon-Solid.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		6C84735A88E44FE2BEA2E997 /* Anton.ttf */ = {isa = PBXFileReference; name = "Anton.ttf"; path = "../assets/fonts/Anton.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +91,7 @@
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				D65327D7A22EEC0BE12398D9 /* Pods */,
 				D7E4C46ADA2E9064B798F356 /* ExpoModulesProviders */,
+				8AF2764B68E84D7B8FBFC16E /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -132,6 +139,17 @@
 			);
 			name = ExpoModulesProviders;
 			sourceTree = "<group>";
+		};
+		8AF2764B68E84D7B8FBFC16E /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				695C09BDE9E1460B9E489456 /* Pokemon-Hollow.ttf */,
+				2DBAD592318B490BA5028A35 /* Pokemon-Solid.ttf */,
+				6C84735A88E44FE2BEA2E997 /* Anton.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -196,6 +214,9 @@
 				BB2F792D24A3F905000567C9 /* Expo.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */,
+				98B912B55C5C4B7D980FB7A5 /* Pokemon-Hollow.ttf in Resources */,
+				612FE98EC50A48F8B18185C5 /* Pokemon-Solid.ttf in Resources */,
+				86998A0987A141F9BB0C333B /* Anton.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
