@@ -1,5 +1,5 @@
-import React from 'react';
-import Extensions from '../components/Extensions';
+import React from "react";
+import Extensions from "../components/Extensions";
 
 function ExtensionsScreen() {
     return (

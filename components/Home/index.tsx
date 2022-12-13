@@ -20,7 +20,7 @@ export default function Home() {
         axios
             .get(`${baseUrl}/series`)
             .then((response) => {
-                response.data.reverse()
+                response.data.reverse();
                 setSeries(response.data);
             })
             .catch((err) => {
@@ -34,10 +34,10 @@ export default function Home() {
 
     return (
         <View style={styles.home}>
-        <ImageBackground
-            source={require("../../assets/images/backgroundPoke.png")}
-            style={styles.backgroundImage}
-        />
+            <ImageBackground
+                source={require("../../assets/images/backgroundPoke.png")}
+                style={styles.backgroundImage}
+            />
             <Text style={styles.title}>Series</Text>
             <View style={styles.series}>
                 <FlatList

@@ -17,7 +17,7 @@ export default function App() {
                     screenOptions={{
                         headerShown: false,
                     }}
-                    initialRouteName="Extensions"
+                    initialRouteName="CardsTCG"
                 >
                     <Stack.Screen
                         name="Home"

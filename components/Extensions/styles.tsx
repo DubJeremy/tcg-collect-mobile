@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     },
     title: {
         flex: 2,
-        textAlignVertical:"bottom",
+        textAlignVertical: "bottom",
         fontWeight: "400",
         fontSize: 35,
         color: "#fff",
@@ -23,13 +23,12 @@ const styles = StyleSheet.create({
     },
     series: {
         borderColor: "rgba(0, 0, 0, 0.3)",
-        borderTopWidth:3,
+        borderTopWidth: 3,
         marginTop: 20,
         width: "80%",
         height: "85%",
         justifyContent: "flex-end",
         alignItems: "center",
-    
     },
     card: {
         justifyContent: "center",
@@ -42,8 +41,8 @@ const styles = StyleSheet.create({
     logoSerie: {
         width: 400,
         height: 50,
-        resizeMode: 'contain',
-    }
+        resizeMode: "contain",
+    },
 });
 
 export default styles;

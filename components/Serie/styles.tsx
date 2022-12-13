@@ -9,12 +9,11 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         padding: 20,
-
     },
     logoSerie: {
         width: "120%",
         height: "60%",
-        resizeMode: 'contain',
+        resizeMode: "contain",
     },
     series: {},
 });
