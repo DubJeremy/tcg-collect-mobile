@@ -11,7 +11,6 @@ export default function Serie(props: any) {
     if (!loaded) {
         return null;
     }
-
     return (
         <Pressable
             style={styles.CardSerie}

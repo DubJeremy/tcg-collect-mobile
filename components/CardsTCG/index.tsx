@@ -1,18 +1,12 @@
 import React from "react";
-import { View } from "react-native";
+import { Text, View } from "react-native";
 
 import styles from "./styles";
 
-export default async function CardsTCG(props: any) {
-    if (props === null) {
-        return (
-            <View style={styles.loader}>
-                <View style={styles.loaderTxt}>Chargement ... </View>
-            </View>
-        );
-    }
+export default function CardsTCG() {
     return (
         <View style={styles.cards}>
+            <Text>CardsTCG</Text>
         </View>
     );
 }

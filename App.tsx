@@ -1,20 +1,43 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
 import { StyleSheet, Text, View, ImageBackground } from "react-native";
-import Home from "./components/Home";
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+import HomeScreen from "./screens/HomeScreen";
+import ExtensionsScreen from "./screens/ExtensionsScreen";
+import CardsTCGScreen from "./screens/CardsTCGScreen";
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
     return (
-        <View style={styles.container}>
-            <ImageBackground
-                source={require("./assets/images/backgroundPoke.png")}
-                style={styles.backgroundImage}
-            />
-            <Text style={styles.txt}>TCG Collect</Text>
-
-            <Home />
-            <StatusBar style="auto" />
-        </View>
+            <NavigationContainer>
+                <Stack.Navigator
+                    screenOptions={{
+                        headerShown: false,
+                    }}
+                    initialRouteName="Extensions"
+                >
+                    <Stack.Screen
+                        name="Home"
+                        component={HomeScreen}
+                        options={{ title: 'TCG Collect' }}
+                    />
+                    <Stack.Screen
+                        name="Extensions"
+                        component={ExtensionsScreen}
+                    />
+                    <Stack.Screen
+                        name="CardsTCG"
+                        component={CardsTCGScreen}
+                    />
+                    {/* <Stack.Screen
+                        name="Profile"
+                        component={Profile}
+                    /> */}
+                </Stack.Navigator>
+            </NavigationContainer>
     );
 }
 
@@ -23,12 +46,6 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: "center",
         justifyContent: "flex-start",
-    },
-    backgroundImage: {
-        width: "100%",
-        height: "100%",
-        resizeMode: "cover",
-        position: "absolute",
     },
     txt: {
         paddingTop: 60,

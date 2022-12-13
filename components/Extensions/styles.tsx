@@ -39,6 +39,11 @@ const styles = StyleSheet.create({
         marginTop: "2.5%",
         marginBottom: "2.5%",
     },
+    logoSerie: {
+        width: 400,
+        height: 50,
+        resizeMode: 'contain',
+    }
 });
 
 export default styles;
