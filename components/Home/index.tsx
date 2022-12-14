@@ -13,7 +13,7 @@ interface Navigation {
     navigation: any;
 }
 
-export default function Home() {
+export default function Home({ navigation }: any) {
     const [series, setSeries] = useState();
 
     const fetchSeries = () => {
@@ -45,7 +45,14 @@ export default function Home() {
                     data={series}
                     renderItem={({ item }) => (
                         <View style={styles.card}>
-                            <Serie props={[item.id, item.name, item.logo]} />
+                            <Serie
+                                props={[
+                                    item.id,
+                                    item.name,
+                                    item.logo,
+                                    navigation,
+                                ]}
+                            />
                         </View>
                     )}
                     keyExtractor={(item) => item.id}

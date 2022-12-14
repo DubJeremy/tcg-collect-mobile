@@ -18,11 +18,14 @@ const baseUrl = "https://api.tcgdex.net/v2/fr";
 
 export default function CardsTCG(props: any) {
     const [cardsTCG, setCardsTCG] = useState();
-    const [zoom, setZoom] = useState(true);
+    const [cardImage, setCardImage] = useState<string>();
+    const [zoom, setZoom] = useState(false);
+
+    const extensionId = props.props.extensionId;
 
     const fetchCardsTCG = () => {
         axios
-            .get(`${baseUrl}/sets/swsh10`)
+            .get(`${baseUrl}/sets/${extensionId}`)
             .then((response) => {
                 setCardsTCG(response.data.cards);
             })
@@ -35,10 +38,10 @@ export default function CardsTCG(props: any) {
         fetchCardsTCG();
     }, []);
 
-    const handleClick = () => {
+    const handlePress = () => {
         setZoom(!zoom);
     };
-
+    console.log(cardsTCG);
     return (
         <View style={styles.cardsTCG}>
             <ImageBackground
@@ -47,8 +50,8 @@ export default function CardsTCG(props: any) {
             />
             <Text style={styles.title}>Cards</Text>
             {zoom ? (
-                <Pressable style={styles.cards} onPress={() => handleClick()}>
-                    <CardTCG />
+                <Pressable style={styles.cards} onPress={() => handlePress()}>
+                    <CardTCG cardImage={cardImage} />
                 </Pressable>
             ) : (
                 <View style={styles.cards}>
@@ -59,7 +62,8 @@ export default function CardsTCG(props: any) {
                             <Pressable
                                 style={styles.card}
                                 onPress={() => {
-                                    console.log("youhou");
+                                    handlePress();
+                                    setCardImage(item.image);
                                 }}
                             >
                                 <Image

@@ -1,10 +1,10 @@
 import React from "react";
 import Home from "../components/Home";
 
-function HomeScreen() {
+function HomeScreen({ navigation }) {
     return (
         <>
-            <Home />
+            <Home navigation={navigation} />
         </>
     );
 }

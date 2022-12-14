@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { Text, Pressable, Image } from "react-native";
 import styles from "./styles";
 import { useFonts } from "expo-font";
 
 export default function Serie(props: any) {
+    const [idSeries, setIDSeries] = useState();
+
     const [loaded] = useFonts({
         Anton: require("../../assets/fonts/Anton.ttf"),
     });
@@ -11,19 +13,19 @@ export default function Serie(props: any) {
     if (!loaded) {
         return null;
     }
+    const handlePress = () => {
+        const data = { serieId: props.props[0] };
+        props.props[3].navigate("Extensions", { data: data });
+    };
+
     return (
-        <Pressable
-            style={styles.CardSerie}
-            onPress={() => {
-                console.log("youhou");
-            }}
-        >
+        <Pressable style={styles.CardSerie} onPress={() => handlePress()}>
             <Image
                 style={styles.logoSerie}
                 source={
                     props.props[2] !== undefined
                         ? { uri: `${props.props[2]}` }
-                        : require("C:/Work/tcg-collect-mobile/assets/images/pokemonCard.png")
+                        : require("C:/Work/tcg-collect-mobile/assets/images/pokemonDeck.png")
                 }
             />
             <Text

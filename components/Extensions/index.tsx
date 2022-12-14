@@ -15,16 +15,21 @@ import styles from "./styles";
 const baseUrl = "https://api.tcgdex.net/v2/fr";
 
 export default function Extension(props: any) {
-    const [extensions, setExtensions] = useState();
+    const [filteredExtensions, setFilteredExtensions] = useState();
 
-    const serie = "base";
+    const serieId: string = props.props[0].serieId;
 
     const fetchExtensions = () => {
         axios
             .get(`${baseUrl}/sets`)
             .then((response) => {
                 response.data.reverse();
-                setExtensions(response.data);
+
+                setFilteredExtensions(
+                    response.data.filter((item: any) =>
+                        item.id.includes(serieId)
+                    )
+                );
             })
             .catch((err) => {
                 console.log(err);
@@ -34,6 +39,11 @@ export default function Extension(props: any) {
     useEffect(() => {
         fetchExtensions();
     }, []);
+
+    const handlePress = (itemId: string) => {
+        const data = { extensionId: itemId };
+        props.props[1].navigate("CardsTCG", { data: data });
+    };
 
     return (
         <View style={styles.home}>
@@ -45,45 +55,38 @@ export default function Extension(props: any) {
             <View style={styles.series}>
                 <FlatList
                     numColumns={1}
-                    data={extensions}
+                    data={filteredExtensions}
                     renderItem={({ item }) => (
-                        <>
-                            {item.id.includes(serie) && (
-                                <Pressable
-                                    style={styles.card}
-                                    onPress={() => {
-                                        console.log("youhou");
-                                    }}
-                                >
-                                    <Image
-                                        style={styles.logoSerie}
-                                        source={
-                                            item.logo !== undefined
-                                                ? { uri: `${item.logo}` }
-                                                : require("C:/Work/tcg-collect-mobile/assets/images/pokeballLogo.png")
-                                        }
-                                    />
-                                    {item.symbol && (
-                                        <Image
-                                            style={styles.logoSerie}
-                                            source={{ uri: `${item.symbol}` }}
-                                        />
-                                    )}
-                                    <Text>
-                                        {item.name}, {item.cardCount.official}{" "}
-                                        cartes{" "}
-                                        {item.cardCount.total -
-                                            item.cardCount.official ===
-                                        0
-                                            ? ""
-                                            : `+ ${
-                                                  item.cardCount.total -
-                                                  item.cardCount.official
-                                              } scrètes`}
-                                    </Text>
-                                </Pressable>
+                        <Pressable
+                            style={styles.card}
+                            onPress={() => handlePress(item.id)}
+                        >
+                            <Image
+                                style={styles.logoSerie}
+                                source={
+                                    item.logo !== undefined
+                                        ? { uri: `${item.logo}` }
+                                        : require("C:/Work/tcg-collect-mobile/assets/images/pokeballLogo.png")
+                                }
+                            />
+                            {item.symbol && (
+                                <Image
+                                    style={styles.logoSerie}
+                                    source={{ uri: `${item.symbol}` }}
+                                />
                             )}
-                        </>
+                            <Text>
+                                {item.name}, {item.cardCount.official} cartes{" "}
+                                {item.cardCount.total -
+                                    item.cardCount.official ===
+                                0
+                                    ? ""
+                                    : `+ ${
+                                          item.cardCount.total -
+                                          item.cardCount.official
+                                      } scrètes`}
+                            </Text>
+                        </Pressable>
                     )}
                     keyExtractor={(item) => item.id}
                 />

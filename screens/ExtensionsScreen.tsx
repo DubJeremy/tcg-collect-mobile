@@ -1,10 +1,12 @@
 import React from "react";
 import Extensions from "../components/Extensions";
 
-function ExtensionsScreen() {
+function ExtensionsScreen({ route, navigation }: any) {
+    const { data } = route.params;
+
     return (
         <>
-            <Extensions />
+            <Extensions props={[data, navigation]} />
         </>
     );
 }
