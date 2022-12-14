@@ -18,7 +18,7 @@ const baseUrl = "https://api.tcgdex.net/v2/fr";
 
 export default function CardsTCG(props: any) {
     const [cardsTCG, setCardsTCG] = useState();
-    const [zoom, setZoom] = useState(true);
+    const [zoom, setZoom] = useState(false);
 
     const fetchCardsTCG = () => {
         axios
@@ -35,7 +35,7 @@ export default function CardsTCG(props: any) {
         fetchCardsTCG();
     }, []);
 
-    const handleClick = () => {
+    const handlePress = () => {
         setZoom(!zoom);
     };
 
@@ -47,7 +47,7 @@ export default function CardsTCG(props: any) {
             />
             <Text style={styles.title}>Cards</Text>
             {zoom ? (
-                <Pressable style={styles.cards} onPress={() => handleClick()}>
+                <Pressable style={styles.cards} onPress={() => handlePress()}>
                     <CardTCG />
                 </Pressable>
             ) : (
