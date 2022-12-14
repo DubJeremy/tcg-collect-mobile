@@ -6,7 +6,7 @@ function ExtensionsScreen({ route, navigation }: any) {
 
     return (
         <>
-            <Extensions props={[route, data]} />
+            <Extensions props={[data, navigation]} />
         </>
     );
 }

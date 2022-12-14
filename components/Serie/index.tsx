@@ -14,18 +14,12 @@ export default function Serie(props: any) {
         return null;
     }
     const handlePress = () => {
-        setIDSeries(props.props[0]);
         const data = { serieId: props.props[0] };
         props.props[3].navigate("Extensions", { data: data });
-        console.log(props.props[0]);
     };
 
     return (
-        <Pressable
-            style={styles.CardSerie}
-            onPress={() => handlePress()}
-            // onPress={() => props.props[3].navigate("Extensions")}
-        >
+        <Pressable style={styles.CardSerie} onPress={() => handlePress()}>
             <Image
                 style={styles.logoSerie}
                 source={

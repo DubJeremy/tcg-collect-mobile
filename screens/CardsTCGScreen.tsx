@@ -1,10 +1,11 @@
 import React from "react";
 import CardsTCG from "../components/CardsTCG";
 
-function CardsTCGScreen() {
+function CardsTCGScreen({ route }: any) {
+    const { data } = route.params;
     return (
         <>
-            <CardsTCG />
+            <CardsTCG props={data} />
         </>
     );
 }

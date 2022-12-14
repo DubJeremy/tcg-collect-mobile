@@ -15,9 +15,9 @@ import styles from "./styles";
 const baseUrl = "https://api.tcgdex.net/v2/fr";
 
 export default function Extension(props: any) {
-    const [filteredItems, setFilteredItem] = useState();
+    const [filteredExtensions, setFilteredExtensions] = useState();
 
-    const serieId: string = props.props[1].serieId;
+    const serieId: string = props.props[0].serieId;
 
     const fetchExtensions = () => {
         axios
@@ -25,7 +25,7 @@ export default function Extension(props: any) {
             .then((response) => {
                 response.data.reverse();
 
-                setFilteredItem(
+                setFilteredExtensions(
                     response.data.filter((item: any) =>
                         item.id.includes(serieId)
                     )
@@ -40,6 +40,11 @@ export default function Extension(props: any) {
         fetchExtensions();
     }, []);
 
+    const handlePress = (itemId: string) => {
+        const data = { extensionId: itemId };
+        props.props[1].navigate("CardsTCG", { data: data });
+    };
+
     return (
         <View style={styles.home}>
             <ImageBackground
@@ -50,11 +55,11 @@ export default function Extension(props: any) {
             <View style={styles.series}>
                 <FlatList
                     numColumns={1}
-                    data={filteredItems}
+                    data={filteredExtensions}
                     renderItem={({ item }) => (
                         <Pressable
                             style={styles.card}
-                            onPress={() => props.props[0].navigate("CardsTCG")}
+                            onPress={() => handlePress(item.id)}
                         >
                             <Image
                                 style={styles.logoSerie}
