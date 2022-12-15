@@ -2,13 +2,16 @@ import React, { useState } from "react";
 import { Text, Pressable, Image } from "react-native";
 import { useFonts } from "expo-font";
 
+import Loader from "../Loader";
+
 import styles from "./styles";
 
 export default function Serie(props: any) {
+    const [isImageLoading, setIsImageLoading] = useState(true);
+
     const [loaded] = useFonts({
         Anton: require("../../assets/fonts/Anton.ttf"),
     });
-
     if (!loaded) {
         return null;
     }
@@ -19,6 +22,7 @@ export default function Serie(props: any) {
 
     return (
         <Pressable style={styles.CardSerie} onPress={() => handlePress()}>
+            {isImageLoading && <Loader loader={4} />}
             <Image
                 style={styles.logoSerie}
                 source={
@@ -26,6 +30,7 @@ export default function Serie(props: any) {
                         ? { uri: `${props.props[2]}` }
                         : require("C:/Work/tcg-collect-mobile/assets/images/pokemonDeck.png")
                 }
+                onLoad={() => setIsImageLoading(false)}
             />
             <Text
                 style={{

@@ -14,6 +14,7 @@ import { useFonts } from "expo-font";
 import CardTCG from "../CardTCG";
 
 import styles from "./styles";
+import Loader from "../Loader";
 
 const baseUrl = "https://api.tcgdex.net/v2/fr";
 
@@ -21,9 +22,15 @@ export default function CardsTCG(props: any) {
     const [cardsTCG, setCardsTCG] = useState();
     const [cardImage, setCardImage] = useState<string>();
     const [zoom, setZoom] = useState(false);
+    const [loading, setLoading] = useState(true);
+    const [isImageLoading, setIsImageLoading] = useState(true);
+
     const [loaded] = useFonts({
         PokemonSolid: require("../../assets/fonts/Pokemon-Solid.ttf"),
     });
+    // if (!loaded) {
+    //     return null;
+    // }
 
     const extensionId = props.props.extensionId;
 
@@ -32,6 +39,7 @@ export default function CardsTCG(props: any) {
             .get(`${baseUrl}/sets/${extensionId}`)
             .then((response) => {
                 setCardsTCG(response.data.cards);
+                setLoading(false);
             })
             .catch((err) => {
                 console.log(err);
@@ -75,29 +83,37 @@ export default function CardsTCG(props: any) {
                 </Pressable>
             ) : (
                 <View style={styles.cards}>
-                    <FlatList
-                        numColumns={3}
-                        data={cardsTCG}
-                        renderItem={({ item }) => (
-                            <Pressable
-                                style={styles.card}
-                                onPress={() => {
-                                    handlePress();
-                                    setCardImage(item.image);
-                                }}
-                            >
-                                <Image
-                                    style={styles.imgCard}
-                                    source={
-                                        item.image !== undefined
-                                            ? { uri: `${item.image}/high.png` }
-                                            : require("C:/Work/tcg-collect-mobile/assets/images/pokeballLogo.png")
-                                    }
-                                />
-                            </Pressable>
-                        )}
-                        keyExtractor={(item) => item.id}
-                    />
+                    {loading ? (
+                        <Loader loader={1} />
+                    ) : (
+                        <FlatList
+                            numColumns={3}
+                            data={cardsTCG}
+                            renderItem={({ item }) => (
+                                <Pressable
+                                    style={styles.card}
+                                    onPress={() => {
+                                        handlePress();
+                                        setCardImage(item.image);
+                                    }}
+                                >
+                                    {isImageLoading && <Loader loader={3} />}
+                                    <Image
+                                        style={styles.imgCard}
+                                        source={
+                                            item.image !== undefined
+                                                ? {
+                                                      uri: `${item.image}/high.png`,
+                                                  }
+                                                : require("C:/Work/tcg-collect-mobile/assets/images/pokeballLogo.png")
+                                        }
+                                        onLoad={() => setIsImageLoading(false)}
+                                    />
+                                </Pressable>
+                            )}
+                            keyExtractor={(item) => item.id}
+                        />
+                    )}
                 </View>
             )}
             <StatusBar style="auto" />

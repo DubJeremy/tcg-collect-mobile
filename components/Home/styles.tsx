@@ -6,10 +6,13 @@ const styles = StyleSheet.create({
         height: "100%",
         resizeMode: "cover",
         position: "absolute",
+        justifyContent: "center",
+        alignItems: "center",
     },
     home: {
         flex: 1,
         alignItems: "center",
+        position: "relative",
     },
     series: {
         borderColor: "rgba(0, 0, 0, 0.3)",

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { FlatList, ImageBackground, Text, View } from "react-native";
+import { FlatList, Image, ImageBackground, Text, View } from "react-native";
 import axios from "axios";
 import { StatusBar } from "expo-status-bar";
 import { useFonts } from "expo-font";
 
 import Serie from "../Serie";
+import Loader from "../Loader";
 
 import styles from "./styles";
 
@@ -16,10 +17,15 @@ interface Navigation {
 
 export default function Home({ navigation }: any) {
     const [series, setSeries] = useState();
+    const [loading, setLoading] = useState(true);
+
     const [loaded] = useFonts({
         Anton: require("../../assets/fonts/Anton.ttf"),
         PokemonSolid: require("../../assets/fonts/Pokemon-Solid.ttf"),
     });
+    // if (!loaded) {
+    //     return null;
+    // }
 
     const fetchSeries = () => {
         axios
@@ -27,6 +33,7 @@ export default function Home({ navigation }: any) {
             .then((response) => {
                 response.data.reverse();
                 setSeries(response.data);
+                setLoading(false);
             })
             .catch((err) => {
                 console.log(err);
@@ -60,24 +67,29 @@ export default function Home({ navigation }: any) {
             >
                 Series
             </Text>
+
             <View style={styles.series}>
-                <FlatList
-                    numColumns={2}
-                    data={series}
-                    renderItem={({ item }) => (
-                        <View style={styles.card}>
-                            <Serie
-                                props={[
-                                    item.id,
-                                    item.name,
-                                    item.logo,
-                                    navigation,
-                                ]}
-                            />
-                        </View>
-                    )}
-                    keyExtractor={(item) => item.id}
-                />
+                {loading ? (
+                    <Loader loader={1} />
+                ) : (
+                    <FlatList
+                        numColumns={2}
+                        data={series}
+                        renderItem={({ item }) => (
+                            <View style={styles.card}>
+                                <Serie
+                                    props={[
+                                        item.id,
+                                        item.name,
+                                        item.logo,
+                                        navigation,
+                                    ]}
+                                />
+                            </View>
+                        )}
+                        keyExtractor={(item) => item.id}
+                    />
+                )}
             </View>
             <StatusBar style="auto" />
         </View>

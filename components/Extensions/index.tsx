@@ -12,11 +12,15 @@ import { StatusBar } from "expo-status-bar";
 import { useFonts } from "expo-font";
 
 import styles from "./styles";
+import Loader from "../Loader";
 
 const baseUrl = "https://api.tcgdex.net/v2/fr";
 
 export default function Extension(props: any) {
     const [filteredExtensions, setFilteredExtensions] = useState();
+    const [loading, setLoading] = useState(true);
+    const [isImageLoading, setIsImageLoading] = useState(true);
+
     const [loaded] = useFonts({
         Anton: require("../../assets/fonts/Anton.ttf"),
         PokemonSolid: require("../../assets/fonts/Pokemon-Solid.ttf"),
@@ -35,6 +39,7 @@ export default function Extension(props: any) {
                         item.id.includes(serieId)
                     )
                 );
+                setLoading(false);
             })
             .catch((err) => {
                 console.log(err);
@@ -74,53 +79,40 @@ export default function Extension(props: any) {
                 Extensions
             </Text>
             <View style={styles.extensions}>
-                <FlatList
-                    numColumns={1}
-                    data={filteredExtensions}
-                    renderItem={({ item }) => (
-                        <Pressable
-                            style={styles.extension}
-                            onPress={() => handlePress(item.id)}
-                        >
-                            <Image
-                                style={styles.logoSerie}
-                                source={
-                                    item.logo !== undefined
-                                        ? { uri: `${item.logo}` }
-                                        : require("C:/Work/tcg-collect-mobile/assets/images/pokeballLogo.png")
-                                }
-                            />
-                            {item.symbol && (
-                                <Image
-                                    style={styles.symbolSerie}
-                                    source={{ uri: `${item.symbol}` }}
-                                />
-                            )}
-                            <Text
-                                style={{
-                                    justifyContent: "flex-end",
-                                    alignItems: "center",
-                                    marginTop: 10,
-                                    fontFamily: "Anton",
-                                    fontSize: 15,
-                                    color: "#fff",
-                                    textShadowColor: "rgba(0, 0, 0, 0.75)",
-                                    textShadowOffset: {
-                                        width: -2,
-                                        height: 2,
-                                    },
-                                    textShadowRadius: 5,
-                                    textAlign: "center",
-                                    width: "60%",
-                                }}
+                {loading ? (
+                    <Loader loader={1} />
+                ) : (
+                    <FlatList
+                        numColumns={1}
+                        data={filteredExtensions}
+                        renderItem={({ item }) => (
+                            <Pressable
+                                style={styles.extension}
+                                onPress={() => handlePress(item.id)}
                             >
-                                {item.name}
-                            </Text>
-                            <View style={styles.desc}>
+                                {isImageLoading && <Loader loader={2} />}
+                                <Image
+                                    style={styles.logoSerie}
+                                    source={
+                                        item.logo !== undefined
+                                            ? { uri: `${item.logo}` }
+                                            : require("C:/Work/tcg-collect-mobile/assets/images/pokeballLogo.png")
+                                    }
+                                    onLoad={() => setIsImageLoading(false)}
+                                />
+                                {item.symbol && (
+                                    <Image
+                                        style={styles.symbolSerie}
+                                        source={{ uri: `${item.symbol}` }}
+                                    />
+                                )}
                                 <Text
                                     style={{
+                                        justifyContent: "flex-end",
+                                        alignItems: "center",
+                                        marginTop: 10,
                                         fontFamily: "Anton",
-                                        fontSize: 11,
+                                        fontSize: 15,
                                         color: "#fff",
                                         textShadowColor: "rgba(0, 0, 0, 0.75)",
                                         textShadowOffset: {
@@ -128,41 +120,62 @@ export default function Extension(props: any) {
                                             height: 2,
                                         },
                                         textShadowRadius: 5,
-                                        textAlign: "right",
-                                        lineHeight: 20,
+                                        textAlign: "center",
+                                        width: "60%",
                                     }}
                                 >
-                                    {item.cardCount.official} cartes{" "}
+                                    {item.name}
                                 </Text>
-                                <Text
-                                    style={{
-                                        fontFamily: "Anton",
-                                        fontSize: 10,
-                                        color: "#fff",
-                                        textShadowColor: "rgba(0, 0, 0, 0.75)",
-                                        textShadowOffset: {
-                                            width: -2,
-                                            height: 2,
-                                        },
-                                        textShadowRadius: 5,
-                                        textAlign: "right",
-                                        lineHeight: 12,
-                                    }}
-                                >
-                                    {item.cardCount.total -
-                                        item.cardCount.official ===
-                                    0
-                                        ? ""
-                                        : `+${
-                                              item.cardCount.total -
-                                              item.cardCount.official
-                                          } secrètes`}
-                                </Text>
-                            </View>
-                        </Pressable>
-                    )}
-                    keyExtractor={(item) => item.id}
-                />
+                                <View style={styles.desc}>
+                                    <Text
+                                        style={{
+                                            fontFamily: "Anton",
+                                            fontSize: 11,
+                                            color: "#fff",
+                                            textShadowColor:
+                                                "rgba(0, 0, 0, 0.75)",
+                                            textShadowOffset: {
+                                                width: -2,
+                                                height: 2,
+                                            },
+                                            textShadowRadius: 5,
+                                            textAlign: "right",
+                                            lineHeight: 20,
+                                        }}
+                                    >
+                                        {item.cardCount.official} cartes{" "}
+                                    </Text>
+                                    <Text
+                                        style={{
+                                            fontFamily: "Anton",
+                                            fontSize: 10,
+                                            color: "#fff",
+                                            textShadowColor:
+                                                "rgba(0, 0, 0, 0.75)",
+                                            textShadowOffset: {
+                                                width: -2,
+                                                height: 2,
+                                            },
+                                            textShadowRadius: 5,
+                                            textAlign: "right",
+                                            lineHeight: 12,
+                                        }}
+                                    >
+                                        {item.cardCount.total -
+                                            item.cardCount.official ===
+                                        0
+                                            ? ""
+                                            : `+${
+                                                  item.cardCount.total -
+                                                  item.cardCount.official
+                                              } secrètes`}
+                                    </Text>
+                                </View>
+                            </Pressable>
+                        )}
+                        keyExtractor={(item) => item.id}
+                    />
+                )}
             </View>
             <StatusBar style="auto" />
         </View>
