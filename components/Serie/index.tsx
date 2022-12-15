@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { Text, Pressable, Image } from "react-native";
-import styles from "./styles";
 import { useFonts } from "expo-font";
 
-export default function Serie(props: any) {
-    const [idSeries, setIDSeries] = useState();
+import styles from "./styles";
 
+export default function Serie(props: any) {
     const [loaded] = useFonts({
         Anton: require("../../assets/fonts/Anton.ttf"),
     });
