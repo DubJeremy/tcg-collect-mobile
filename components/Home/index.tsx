@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { FlatList, Image, ImageBackground, Text, View } from "react-native";
 import axios from "axios";
 import { StatusBar } from "expo-status-bar";
 import { useFonts } from "expo-font";
+import * as SplashScreen from "expo-splash-screen";
 
 import Serie from "../Serie";
 import Loader from "../Loader";
@@ -10,20 +11,22 @@ import Loader from "../Loader";
 import styles from "./styles";
 
 const baseUrl = "https://api.tcgdex.net/v2/fr";
-
-interface Navigation {
-    navigation: any;
-}
+SplashScreen.preventAutoHideAsync();
 
 export default function Home({ navigation }: any) {
     const [series, setSeries] = useState();
     const [loading, setLoading] = useState(true);
 
-    const [loaded] = useFonts({
-        Anton: require("../../assets/fonts/Anton.ttf"),
+    const [fontsLoaded] = useFonts({
         PokemonSolid: require("../../assets/fonts/Pokemon-Solid.ttf"),
     });
-    // if (!loaded) {
+    const onLayoutRootView = useCallback(async () => {
+        if (fontsLoaded) {
+            await SplashScreen.hideAsync();
+        }
+    }, [fontsLoaded]);
+
+    // if (!fontsLoaded) {
     //     return null;
     // }
 
@@ -45,7 +48,7 @@ export default function Home({ navigation }: any) {
     }, []);
 
     return (
-        <View style={styles.home}>
+        <View style={styles.home} onLayout={onLayoutRootView}>
             <ImageBackground
                 source={require("../../assets/images/backgroundPoke.png")}
                 style={styles.backgroundImage}

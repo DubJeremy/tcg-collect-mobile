@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
         resizeMode: "cover",
         position: "absolute",
     },
-    home: {
+    screen: {
         flex: 1,
         alignItems: "center",
     },
