@@ -26,9 +26,13 @@ export default function Serie(props: any) {
             <Image
                 style={styles.logoSerie}
                 source={
-                    props.props[2] !== undefined
-                        ? { uri: `${props.props[2]}` }
-                        : require("C:/Work/tcg-collect-mobile/assets/images/pokemonDeck.png")
+                    props.props[0] === "sm"
+                        ? require("C:/Work/tcg-collect-mobile/assets/images/soleiletlune.png")
+                        : props.props[0] === "swsh"
+                        ? require("C:/Work/tcg-collect-mobile/assets/images/epeeetbouclier.png")
+                        : props.props[2] === undefined
+                        ? require("C:/Work/tcg-collect-mobile/assets/images/pokemonDeck.png")
+                        : { uri: `${props.props[2]}` }
                 }
                 onLoad={() => setIsImageLoading(false)}
             />
