@@ -10,7 +10,7 @@ export default function Serie(props: any) {
     const [isImageLoading, setIsImageLoading] = useState(true);
 
     const [loaded] = useFonts({
-        Anton: require("../../assets/fonts/Anton.ttf"),
+        Anton: require("../../../assets/fonts/Anton.ttf"),
     });
     if (!loaded) {
         return null;

@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from "react";
-import { FlatList, Image, ImageBackground, Text, View } from "react-native";
+import { FlatList, ImageBackground, Text, View } from "react-native";
 import axios from "axios";
 import { StatusBar } from "expo-status-bar";
 import { useFonts } from "expo-font";
@@ -18,7 +18,7 @@ export default function Home({ navigation }: any) {
     const [loading, setLoading] = useState(true);
 
     const [fontsLoaded] = useFonts({
-        PokemonSolid: require("../../assets/fonts/Pokemon-Solid.ttf"),
+        PokemonSolid: require("../../../assets/fonts/Pokemon-Solid.ttf"),
     });
     const onLayoutRootView = useCallback(async () => {
         if (fontsLoaded) {
@@ -50,7 +50,7 @@ export default function Home({ navigation }: any) {
     return (
         <View style={styles.home} onLayout={onLayoutRootView}>
             <ImageBackground
-                source={require("../../assets/images/backgroundPoke.png")}
+                source={require("../../../assets/images/backgroundPoke.png")}
                 style={styles.backgroundImage}
             />
             <Text

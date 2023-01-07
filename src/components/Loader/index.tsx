@@ -3,19 +3,19 @@ import { Image, View } from "react-native";
 import styles from "./styles";
 
 export default function Loader({ loader }: { loader: number }) {
-    let loaderPath = require("../../assets/images/Loaders/loaderMew.gif");
+    let loaderPath = require("../../../assets/images/Loaders/loaderMew.gif");
     switch (loader) {
         case 1:
-            loaderPath = require("../../assets/images/Loaders/loaderMew.gif");
+            loaderPath = require("../../../assets/images/Loaders/loaderMew.gif");
             break;
         case 2:
-            loaderPath = require("../../assets/images/Loaders/loaderKanto.gif");
+            loaderPath = require("../../../assets/images/Loaders/loaderKanto.gif");
             break;
         case 3:
-            loaderPath = require("../../assets/images/Loaders/loaderSpectre.gif");
+            loaderPath = require("../../../assets/images/Loaders/loaderSpectre.gif");
             break;
         case 4:
-            loaderPath = require("../../assets/images/Loaders/loaderCarapuce.gif");
+            loaderPath = require("../../../assets/images/Loaders/loaderCarapuce.gif");
             break;
     }
 

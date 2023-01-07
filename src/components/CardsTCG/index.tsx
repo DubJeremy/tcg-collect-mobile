@@ -26,7 +26,7 @@ export default function CardsTCG(props: any) {
     const [isImageLoading, setIsImageLoading] = useState(true);
 
     const [loaded] = useFonts({
-        PokemonSolid: require("../../assets/fonts/Pokemon-Solid.ttf"),
+        PokemonSolid: require("../../../assets/fonts/Pokemon-Solid.ttf"),
     });
     // if (!loaded) {
     //     return null;
@@ -57,7 +57,7 @@ export default function CardsTCG(props: any) {
     return (
         <View style={styles.cardsTCG}>
             <ImageBackground
-                source={require("../../assets/images/backgroundPoke.png")}
+                source={require("../../../assets/images/backgroundPoke.png")}
                 style={styles.backgroundImage}
             />
             <Text
@@ -105,7 +105,7 @@ export default function CardsTCG(props: any) {
                                                 ? {
                                                       uri: `${item.image}/high.png`,
                                                   }
-                                                : require("C:/Work/tcg-collect-mobile/assets/images/pokeballLogo.png")
+                                                : require("../../..//assets/images/pokeballLogo.png")
                                         }
                                         onLoad={() => setIsImageLoading(false)}
                                     />

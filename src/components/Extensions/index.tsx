@@ -24,8 +24,8 @@ export default function Extension(props: any) {
     const [isImageLoading, setIsImageLoading] = useState(true);
 
     const [fontsLoaded] = useFonts({
-        Anton: require("../../assets/fonts/Anton.ttf"),
-        PokemonSolid: require("../../assets/fonts/Pokemon-Solid.ttf"),
+        Anton: require("../../../assets/fonts/Anton.ttf"),
+        PokemonSolid: require("../../../assets/fonts/Pokemon-Solid.ttf"),
     });
     const onLayoutRootView = useCallback(async () => {
         if (fontsLoaded) {
@@ -69,7 +69,7 @@ export default function Extension(props: any) {
     return (
         <View style={styles.screen} onLayout={onLayoutRootView}>
             <ImageBackground
-                source={require("../../assets/images/backgroundPoke.png")}
+                source={require("../../../assets/images/backgroundPoke.png")}
                 style={styles.backgroundImage}
             />
             <Text
@@ -107,7 +107,7 @@ export default function Extension(props: any) {
                                     source={
                                         item.logo !== undefined
                                             ? { uri: `${item.logo}` }
-                                            : require("C:/Work/tcg-collect-mobile/assets/images/pokeballLogo.png")
+                                            : require("../../../assets/images/pokeballLogo.png")
                                     }
                                     onLoad={() => setIsImageLoading(false)}
                                 />
