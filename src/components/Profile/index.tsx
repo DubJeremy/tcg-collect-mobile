@@ -2,7 +2,7 @@ import React from "react";
 import { ImageBackground, Text, View } from "react-native";
 import styles from "./styles";
 
-export default function Profile() {
+export default function Profile({ navigation }: any) {
     return (
         <View style={styles.profile}>
             <ImageBackground

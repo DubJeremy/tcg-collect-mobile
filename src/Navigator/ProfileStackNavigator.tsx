@@ -1,16 +1,19 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Profile from "../screens/profile/ProfileScreen";
-import Settings from "../screens/profile/SettingsScreen";
+import Profile from "../screens/ProfileScreen";
+import Settings from "../screens/SettingsScreen";
 
-const MainStack = createNativeStackNavigator();
+const ProfileStack = createNativeStackNavigator();
 
-function MainStackNavigator() {
+function ProfileStackNavigator() {
     return (
-        <MainStack.Navigator initialRouteName="Profile">
-            <MainStack.Screen name="Profile" component={Profile} />
-            <MainStack.Screen name="Settings" component={Settings} />
-        </MainStack.Navigator>
+        <ProfileStack.Navigator
+            initialRouteName="Profile"
+            screenOptions={{ headerShown: false }}
+        >
+            <ProfileStack.Screen name="Profile" component={Profile} />
+            <ProfileStack.Screen name="Settings" component={Settings} />
+        </ProfileStack.Navigator>
     );
 }
 
-export default MainStackNavigator;
+export default ProfileStackNavigator;

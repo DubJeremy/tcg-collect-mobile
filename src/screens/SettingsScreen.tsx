@@ -1,6 +1,6 @@
 import React from "react";
 
-import Settings from "../../components/Settings";
+import Settings from "../components/Settings";
 
 function SettingsScreen({ route }: any) {
     const { data } = route.params;

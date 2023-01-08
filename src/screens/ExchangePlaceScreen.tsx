@@ -1,5 +1,5 @@
 import React from "react";
-import ExchangePlace from "../../components/ExchangePlace";
+import ExchangePlace from "../components/ExchangePlace";
 
 function ExchangePlaceScreen({ navigation }: any) {
     return (
